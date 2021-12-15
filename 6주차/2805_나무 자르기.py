@@ -10,7 +10,7 @@ trees.sort()
 ans = 0
 start = 1
 end = trees[-1]
-ans = 0
+# ans = 0
 while start <= end:
     mid = (start + end) // 2
     cut_trees = [tree - mid for tree in trees if tree-mid > 0]

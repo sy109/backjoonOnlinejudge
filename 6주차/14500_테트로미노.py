@@ -9,7 +9,6 @@ maps = []
 for _ in range(N):
     line = list(map(int, input().split()))
     maps.append(line)
-# print(maps)
 
 ans = 0
 di = [(-1,0),(1,0),(0,-1),(0,1)]
@@ -17,7 +16,8 @@ di = [(-1,0),(1,0),(0,-1),(0,1)]
 def DFSforThree(i, j, cur, count):
     global tmp
     if count >= 3:
-        tmp = max(tmp, cur)
+        if tmp < cur:
+            tmp = cur
         return
     for d in di:
         ni = i + d[0]
@@ -35,7 +35,6 @@ def fourDirection(i,j, cur):
         if 0<= ni < N and 0 <= nj < M:
             cur += maps[ni][nj]
     values = [cur] * 4
-    # print(values)
     idx = 0
     for d in di:
         ni = i + d[0]
@@ -53,6 +52,7 @@ for i in range(N):
         DFSforThree(i,j,maps[i][j],0)
         visited[i][j] = False
         fourDirection(i,j,maps[i][j])
-        ans = max(ans, tmp)
+        if ans < tmp :
+            ans = tmp
 
 print(ans)
